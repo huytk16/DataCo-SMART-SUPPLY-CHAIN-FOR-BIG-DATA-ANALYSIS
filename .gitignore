@@ -1,0 +1,6 @@
+# Raw dataset folder. Download the dataset from Kaggle and place files here locally.
+Data/
+
+# Local notebook/runtime noise
+.ipynb_checkpoints/
+__pycache__/
