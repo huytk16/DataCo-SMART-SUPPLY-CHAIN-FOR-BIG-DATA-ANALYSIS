@@ -1,0 +1,24 @@
+Market,Order Region,cost,base_shipping,late_penalty,discount_cost
+Africa,Central Africa,44.17,3.56,30.07,10.54
+Africa,East Africa,42.73,3.51,29.08,10.13
+Africa,North Africa,41.97,3.48,28.55,9.94
+Africa,Southern Africa,41.83,3.47,28.05,10.31
+Africa,West Africa,41.0,3.53,27.35,10.12
+Europe,Eastern Europe,42.4,3.5,28.82,10.07
+Europe,Northern Europe,41.82,3.5,28.12,10.2
+Europe,Southern Europe,42.09,3.43,28.4,10.26
+Europe,Western Europe,42.92,3.5,29.27,10.16
+LATAM,Caribbean,41.52,3.51,27.76,10.25
+LATAM,Central America,42.18,3.51,28.55,10.12
+LATAM,South America,42.24,3.51,28.59,10.13
+Pacific Asia,Central Asia,42.14,3.4,28.23,10.52
+Pacific Asia,Eastern Asia,42.05,3.53,28.36,10.17
+Pacific Asia,Oceania,41.92,3.51,28.16,10.24
+Pacific Asia,South Asia,42.74,3.5,29.18,10.07
+Pacific Asia,Southeast Asia,42.62,3.5,28.99,10.13
+Pacific Asia,West Asia,42.63,3.48,28.91,10.24
+USCA,Canada,39.29,3.35,25.8,10.14
+USCA,East of USA,42.75,3.5,29.08,10.17
+USCA,South of  USA ,42.86,3.5,29.26,10.09
+USCA,US Center ,42.47,3.46,28.76,10.25
+USCA,West of USA ,42.01,3.51,28.39,10.11

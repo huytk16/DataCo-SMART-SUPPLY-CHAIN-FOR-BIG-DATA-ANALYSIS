@@ -1,0 +1,2 @@
+q1_optimal,q2_strong,q2_weak,signal_rule,expected_profit,profit_std,p_under_baseline,flexibility_value,contract_value
+0,0,0,"Strong if demand_uplift > 1.0 AND late_improvement > 0.1, else Weak",35977.31,0.0,0.0,0.0,0.0

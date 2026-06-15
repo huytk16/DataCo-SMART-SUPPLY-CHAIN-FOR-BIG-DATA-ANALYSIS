@@ -1,6 +1,47 @@
-# Raw dataset folder. Download the dataset from Kaggle and place files here locally.
-Data/
-
-# Local notebook/runtime noise
-.ipynb_checkpoints/
+# Byte-compiled / optimized / DLL files
 __pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# Local configuration files
+.env
+.venv
+venv/
+ENV/
+env.bak
+venv.bak
+
+# Project-specific Data files
+# Exclude large datasets as they exceed GitHub file limits
+Data/DataCoSupplyChainDataset.csv
+Data/tokenized_access_logs.csv
+
+# Exclude AI-agent specific instruction files
+GEMINI.md
+.gemini/

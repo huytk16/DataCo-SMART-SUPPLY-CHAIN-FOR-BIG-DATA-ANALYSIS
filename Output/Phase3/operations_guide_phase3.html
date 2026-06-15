@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tài liệu hướng dẫn tối ưu hóa mạng lưới & hợp đồng linh hoạt Phase 3 - DataCo Global">
+    <title>Tài liệu Hướng dẫn Tối ưu hóa Mạng lưới & Hợp đồng Linh hoạt - Phase 3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1E3A8A;
+            --primary-light: #3B82F6;
+            --secondary: #475569;
+            --highlight: #EF4444;
+            --bg-light: #F8FAFC;
+            --border-color: #E2E8F0;
+            --text-dark: #0F172A;
+            --text-muted: #64748B;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 40px 50px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-radius: 12px;
+            border-top: 8px solid var(--primary);
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            font-weight: 600;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+            margin-top: 35px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 16px;
+            font-size: 1rem;
+            color: var(--text-dark);
+        }
+
+        p.subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid var(--border-color);
+            margin: 30px 0;
+        }
+
+        ul {
+            margin-top: 0;
+            margin-bottom: 16px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        strong {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        code {
+            font-family: monospace;
+            background-color: #F1F5F9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #0F172A;
+        }
+
+        pre {
+            background-color: #0F172A;
+            color: #F8FAFC;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+            font-size: 0.95rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+
+        table th, table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        table th {
+            background-color: #F8FAFC;
+            color: var(--primary);
+            font-weight: 600;
+            border-bottom: 2px solid #CBD5E1;
+        }
+
+        table tr:hover {
+            background-color: #F8FAFC;
+        }
+
+        .alert-caution {
+            background-color: #FEF2F2;
+            border-left: 4px solid var(--highlight);
+            padding: 16px 20px;
+            border-radius: 4px;
+            margin: 24px 0;
+        }
+
+        .alert-caution p {
+            margin: 0;
+        }
+
+        .alert-caution strong {
+            color: var(--highlight);
+        }
+
+        /* MathJax spacing */
+        .mjx-chtml {
+            margin: 10px 0;
+        }
+    </style>
+    <!-- MathJax for rendering LaTeX math formulas -->
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>TÀI LIỆU HƯỚNG DẪN TỐI ƯU HÓA MẠNG LƯỚI &amp; HỢP ĐỒNG LINH HOẠT (PHASE 3)</h1>
+<h2><em>Báo cáo Vận hành &amp; Phân tích Tối ưu hóa — DataCo Global</em></h2>
+<hr />
+<h2>1. Quy trình thực hiện và Phương pháp toán học ứng dụng (Cách làm)</h2>
+<p>Mục tiêu cốt lõi của <strong>Phase 3</strong> là tối ưu hóa việc phân bổ dòng sản phẩm (flows) trên mạng lưới phân phối toàn cầu và thiết lập chính sách năng lực vận tải linh hoạt để thích ứng với biến động nhu cầu. Quy trình được thiết lập chặt chẽ nối tiếp từ các giai đoạn trước:</p>
+<p><code>[Phase 1: Dữ liệu sạch] ──&gt; [Phase 3.1: Tối ưu mạng lưới LP] ──&gt; [Phase 3.2: Hợp đồng linh hoạt 2 giai đoạn]
+ (clean_baseline_df)            (Tối thiểu hóa chi phí)             (Tối ưu hóa dưới bất định)</code></p>
+<h3>1.1. Bài toán Quy hoạch Tuyến tính Vận tải (Transport LP)</h3>
+<p>Mô hình vận tải tĩnh được xây dựng dưới dạng bài toán Quy hoạch Tuyến tính để tìm phương án phân bổ lưu lượng tối ưu từ 5 <strong>Thị trường cung ứng (Markets)</strong> đến 23 <strong>Vùng tiêu thụ (Order Regions)</strong>.</p>
+<ul>
+<li><strong>Biến quyết định (Decision Variables):</strong>
+    Gọi $x_{ij} \ge 0$ là lượng sản phẩm vận chuyển hàng tháng từ Market $i$ (bao gồm <em>Africa, Europe, LATAM, Pacific Asia, USCA</em>) đến Region $j$ (23 vùng địa lý của khách hàng).</li>
+<li><strong>Hàm mục tiêu (Objective Function):</strong>
+    Tối thiểu hóa tổng chi phí vận tải toàn mạng lưới:
+    $$\min \sum_{i=1}^{5} \sum_{j=1}^{23} c_{ij} \cdot x_{ij}$$
+    Trong đó, <strong>chi phí đơn vị proxy ($c_{ij}$)</strong> được xây dựng từ dữ liệu thực tế bằng công thức:
+    $$c_{ij} = \text{Thời gian giao hàng trung bình}<em>{ij} + (50 \times \text{Tỷ lệ giao trễ}</em>{ij}) + (\text{Tỷ lệ chiết khấu}_{ij}  imes 100)$$
+    <em>Chi phí phạt giao hàng trễ mặc định được đặt ở mức $50$ USD/đơn hàng.</em></li>
+<li><strong>Các ràng buộc (Constraints):</strong><ul>
+<li><strong>Ràng buộc cung (Supply Constraints):</strong> Tổng lượng hàng xuất từ Market $i$ không vượt quá năng lực cung ứng tháng trung bình ($s_i$):
+    $$\sum_{j=1}^{23} x_{ij} \le s_i \quad \forall i = 1 \dots 5$$</li>
+<li><strong>Ràng buộc cầu (Demand Constraints):</strong> Tổng lượng hàng nhập vào Region $j$ phải đáp ứng đủ nhu cầu tháng trung bình ($d_j$):
+    $$\sum_{i=1}^{5} x_{ij} \ge d_j \quad \forall j = 1 \dots 23$$</li>
+<li><strong>Ràng buộc không âm:</strong> $x_{ij} \ge 0 \quad \forall i, j$.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3>1.2. Mô hình Hợp đồng linh hoạt hai giai đoạn (Two-Stage Flexible Contract)</h3>
+<p>Mô hình này giúp doanh nghiệp tối ưu hóa việc cam kết năng lực vận tải dưới sự bất định của nhu cầu thị trường thông qua hai giai đoạn ra quyết định:</p>
+<ul>
+<li><strong>Giai đoạn 1 (Stage 1):</strong> Quyết định lượng công suất cam kết trước $Q_1$ với đơn giá cố định rẻ hơn:
+    $$c_f = 33.84 \text{ USD/đơn vị}$$</li>
+<li><strong>Giai đoạn 2 (Stage 2):</strong> Quan sát tín hiệu thị trường:<ul>
+<li><strong>Tín hiệu Mạnh (Strong Signal - Xác suất 55.6%):</strong> Nhu cầu tăng trưởng cao (demand uplift &gt; 1.0) và tỷ lệ giao trễ được cải thiện (late improvement &gt; 0.1). Doanh nghiệp quyết định mua thêm công suất linh hoạt $Q_{2,\text{strong}}$.</li>
+<li><strong>Tín hiệu Yếu (Weak Signal - Xác suất 44.4%):</strong> Các trường hợp còn lại. Doanh nghiệp đặt thêm công suất nhỏ $Q_{2,\text{weak}}$.</li>
+<li>Đơn giá công suất linh hoạt Stage 2 đắt hơn 30%:
+    $$c_v = 1.3 \times c_f = 43.99 \text{ USD/đơn vị}$$</li>
+</ul>
+</li>
+<li><strong>Hàm mục tiêu tối ưu hóa tài chính:</strong>
+    $$\max_{Q_1, Q_{2s}} E_s[\text{Profit}<em>s(Q_1, Q</em>{2s})]$$
+    <em>Ràng buộc: $Q_1 + Q_{2s} \le \text{Tổng giới hạn công suất} (4,966 \text{ đơn vị})$.</em>
+    Công thức tính lợi nhuận cho mỗi kịch bản $s$ kết hợp doanh thu tăng thêm và mức phạt trễ tiết kiệm được:
+    $$\text{Profit}<em>s = \text{Lợi nhuận cơ sở} + \text{Doanh thu tăng thêm}_s - c_f \cdot Q_1 - c_v \cdot Q</em>{2s} + \text{Phạt trễ tiết kiệm được}_s$$
+    Trong đó, đơn giá doanh thu biên đơn vị bổ sung $r = 28.74$ USD.</li>
+</ul>
+<hr />
+<h2>2. Giải mã kỹ thuật trực quan hóa dữ liệu (Lý do &amp; Cách đọc)</h2>
+<h3>2.1. Heatmap ma trận chi phí (Cost Matrix Heatmap)</h3>
+<ul>
+<li><strong>Lý do lựa chọn:</strong> Trực quan hóa cấu trúc chi phí logistics giữa 5 Markets nguồn và 23 Regions đích. Giúp phát hiện nhanh các tuyến đường có chi phí đắt đỏ hoặc rẻ nhất mà không phải nhìn vào bảng số khô khan.</li>
+<li><strong>Cách đọc biểu đồ:</strong> Hàng đại diện cho Market nguồn, cột đại diện cho Region đích. Ô màu nhạt thể hiện chi phí proxy thấp; ô màu đậm thể hiện chi phí proxy cao (thời gian giao hàng lâu hoặc tỷ lệ giao trễ nghiêm trọng). Ô màu trắng là các tuyến không khả thi (không có dữ liệu thực tế).</li>
+</ul>
+<h3>2.2. Heatmap luồng phân bổ vận chuyển tối ưu (Optimal Transport Flows Heatmap)</h3>
+<ul>
+<li><strong>Lý do lựa chọn:</strong> Biểu diễn trực quan kết quả phân bổ thực tế của biến quyết định $x_{ij}^*$. Cho phép nhà quản trị nhìn thấy ngay luồng hàng tối ưu chảy từ thị trường nào sang vùng tiêu thụ nào.</li>
+<li><strong>Cách đọc biểu đồ:</strong> Giá trị hiển thị trong mỗi ô thể hiện lượng hàng vận chuyển tối ưu (Flow). Ô có màu xanh đậm nhất biểu thị các tuyến vận chuyển huyết mạch có lưu lượng lớn nhất. Ô trống biểu thị luồng tối ưu bằng 0, nghĩa là tuyến đó bị ngắt kết nối để tiết kiệm chi phí cho mạng lưới.</li>
+</ul>
+<h3>2.3. Đồ thị phân tích độ nhạy (Sensitivity Analysis Plots)</h3>
+<ul>
+<li><strong>Lý do lựa chọn:</strong> Đánh giá mức độ biến động của tổng chi phí tối ưu mạng lưới khi các tham số đầu vào (mức phạt giao muộn và hệ số công suất) thay đổi.</li>
+<li><strong>Cách đọc đồ thị:</strong> Trục hoành là các mức thay đổi của tham số (ví dụ: Phạt 25, 50, 100 USD hoặc Hệ số cung ứng 0.9, 1.0, 1.1). Trục tung là Tổng chi phí vận tải tối ưu. Độ dốc của đường biểu diễn mức độ nhạy cảm của hệ thống đối với tham số đó.</li>
+</ul>
+<h3>2.4. Ý nghĩa của điểm ràng buộc "BINDING"</h3>
+<ul>
+<li><strong>Định nghĩa:</strong> Một ràng buộc đạt trạng thái <code>BINDING</code> khi giá trị thực tế đạt đúng giới hạn tối đa của nó.</li>
+<li><strong>Cách diễn giải:</strong> Cả 5 thị trường cung ứng đều báo trạng thái <code>BINDING</code> (Hiệu suất sử dụng năng lực nguồn cung đạt <strong>100%</strong>). Điều này có nghĩa là doanh nghiệp đang khai thác triệt để toàn bộ nguồn lực cung ứng hiện có. Hệ thống không còn công suất dự phòng, tạo ra điểm nghẽn (bottleneck) lớn nếu nhu cầu toàn cầu tăng lên.</li>
+</ul>
+<hr />
+<h2>3. Ý nghĩa quản trị chuỗi cung ứng từ các con số đầu ra</h2>
+<p>Kết quả tối ưu hóa vận hành của DataCo Global mang lại các con số biết nói đòi hỏi những quyết định quản trị chiến lược từ Ban Giám đốc:</p>
+<h3>3.1. Phân tích các chỉ số vận hành cốt lõi</h3>
+<ol>
+<li><strong>Tổng chi phí vận chuyển tối ưu mạng lưới: $420,270.28 USD / tháng</strong><ul>
+<li><em>Ý nghĩa:</em> Đây là chi phí tối thiểu để vận hành mạng lưới phân bổ hiện tại. Con số này đóng vai trò là đường cơ sở (baseline) tối ưu nhất, giúp doanh nghiệp cắt giảm các lãng phí vận tải so với việc phân bổ thủ công.</li>
+</ul>
+</li>
+<li><strong>Tỷ lệ sử dụng nguồn cung đạt 100% (BINDING)</strong><ul>
+<li><em>Ý nghĩa:</em> Mạng lưới đang hoạt động ở giới hạn cực đại, không có công suất an toàn (safety capacity). Doanh nghiệp cần đầu tư mở rộng năng lực cung ứng tại các thị trường nguồn để đáp ứng tăng trưởng tương lai.</li>
+</ul>
+</li>
+<li><strong>Công suất hợp đồng tối ưu ($Q_1^<em>, Q_{2s}^</em>, Q_{2w}^*$) đạt (0, 0, 0) đơn vị</strong><ul>
+<li><em>Ý nghĩa:</em> Kết quả tốt nhất từ mô hình là <strong>Không ký hợp đồng vận tải linh hoạt</strong> và giữ nguyên trạng thái vận hành cơ sở. Theo đó, <strong>Giá trị linh hoạt (Flexibility Value)</strong> và <strong>Giá trị hợp đồng (Contract Value)</strong> đều bằng <strong>$0 USD / tháng</strong>.</li>
+</ul>
+</li>
+</ol>
+<h3>3.2. Giải thích nguyên nhân kinh tế học vận hành sâu sắc</h3>
+<p>Tại sao việc cam kết thêm công suất qua hợp đồng linh hoạt lại không mang lại giá trị? 
+*   <strong>Doanh thu biên đơn vị bổ sung ($r$):</strong> Chỉ đạt <strong>$28.74 USD / đơn vị</strong> (do biên lợi nhuận thấp hoặc giá bán thấp).
+*   <strong>Chi phí đơn vị của hợp đồng:</strong> Chi phí cố định Stage 1 là <strong>$33.84 USD / đơn vị</strong>, chi phí biến đổi Stage 2 là <strong>$43.99 USD / đơn vị</strong>.</p>
+<blockquote>
+<p>[!CAUTION]
+<strong>Quy luật kinh tế biên (Marginal Economic Rule):</strong>
+Do chi phí biên để có thêm công suất lớn hơn nhiều so với doanh thu biên đóng góp ($MC &gt; MR$), mọi quyết định gia tăng công suất thông qua hợp đồng này đều làm giảm lợi nhuận của doanh nghiệp. Vì thế, mô hình toán học đã bảo vệ doanh nghiệp bằng cách đưa ra quyết định tối ưu là <strong>Không thực hiện hợp đồng ($Q^* = 0$)</strong>.</p>
+</div>
+<h3>3.3. Khuyến nghị hành động đối với Ban Giám đốc</h3>
+<ul>
+<li><strong>Khuyến nghị 1: Đàm phán lại đơn giá hợp đồng vận chuyển.</strong> Doanh nghiệp không nên ký hợp đồng hiện tại. Cần đàm phán lại với nhà vận tải (carriers) để giảm chi phí cố định xuống dưới mức hòa vốn là <strong>$28.74 USD / đơn vị</strong>.</li>
+<li><strong>Khuyến nghị 2: Tập trung vào danh mục sản phẩm biên lợi nhuận cao.</strong> Thay vì phân bổ dàn trải, cần ưu tiên công suất vận tải và nguồn hàng cho các nhóm sản phẩm sinh lời tốt như Fishing, Cleats, Camping &amp; Hiking đã được xác định ở Phase 2.</li>
+<li><strong>Khuyến nghị 3: Giải quyết điểm nghẽn nguồn cung.</strong> Đầu tư mở rộng năng lực cung ứng tại các thị trường nguồn có chi phí logistics thấp để gỡ bỏ trạng thái kịch trần (binding) hiện nay.</li>
+</ul>
+<hr />
+<p><em>Báo cáo được thực hiện bởi Chuyên gia Phân tích Dữ liệu Chuỗi Cung ứng &amp; Tối ưu hóa Vận hành.</em></p>
+    </div>
+</body>
+</html>

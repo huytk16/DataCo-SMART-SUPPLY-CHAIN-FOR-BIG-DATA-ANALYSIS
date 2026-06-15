@@ -1,0 +1,4 @@
+strategy,Q1,Q2_strong,Q2_weak,expected_profit,profit_std,p05,p_below_baseline,vs_baseline
+No Contract,0,0,0,35977.31,0.0,35977.31,0.0,0.0
+Fixed Only,0,0,0,35977.31,0.0,35977.31,0.0,0.0
+Flexible (Optimal),0,0,0,35977.31,0.0,35977.31,0.0,0.0

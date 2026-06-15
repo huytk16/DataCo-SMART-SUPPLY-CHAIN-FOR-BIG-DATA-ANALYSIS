@@ -1,315 +1,190 @@
-# DataCo Smart Supply Chain Analytics
+# 🔗 DataCo Smart Supply Chain — Operations Analytics Capstone
 
-## Project Overview
+[![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
+[![Jupyter Notebook](https://img.shields.io/badge/Jupyter-Notebook-orange.svg)](https://jupyter.org/)
+[![Optimization-SciPy%20%26%20PuLP-green.svg](https://img.shields.io/badge/Optimization-SciPy%20%26%20PuLP-green.svg)](https://coin-or.github.io/pulp/)
+[![Kaggle Dataset](https://img.shields.io/badge/Kaggle-Dataset-blue.svg)](https://www.kaggle.com/datasets/shashwatwork/dataco-smart-supply-chain-for-big-data-analysis)
 
-This project analyzes the DataCo Smart Supply Chain dataset to identify operational bottlenecks, demand patterns, inventory risks, and profit optimization opportunities across a global retail supply chain.
+This repository contains an end-to-end **Operations Analytics & Supply Chain Optimization** project on the global supply chain operations of DataCo Global. The analysis is structured into a logical 3-phase framework spanning risk profiling, inventory decision-making, network design, and capacity contracting.
 
-The analysis is organized into three analytical tracks:
+---
 
-- Logistics performance and late delivery risk
-- Demand forecasting and inventory optimization
-- Profitability and discount strategy optimization
+## 📌 Project Architecture
 
-The final project structure is designed for GitHub publication, with raw datasets, notebooks, visual outputs, and reports separated into clear folders.
+The analytics workflow progresses systematically from diagnostic analysis to predictive modeling and prescriptive optimization:
 
-## Business Problem
-
-DataCo operates across multiple markets, customer segments, product categories, and shipping modes. The business faces three major operational questions:
-
-- Why are many orders delivered late, and which shipping modes or regions create the highest risk?
-- Which product categories drive the largest demand, and how should inventory decisions respond to demand variability?
-- How do discount strategies affect profit margin, and where should the business focus to improve profitability?
-
-The goal of this project is to convert raw supply chain data into practical recommendations for logistics improvement, inventory planning, and pricing strategy.
-
-## Dataset
-
-Dataset source: [DataCo SMART SUPPLY CHAIN FOR BIG DATA ANALYSIS on Kaggle](https://www.kaggle.com/datasets/shashwatwork/dataco-smart-supply-chain-for-big-data-analysis).
-
-The main dataset is expected at `Data/DataCoSupplyChainDataset.csv` after download.
-
-Dataset summary:
-
-- Raw records: 180,519 rows
-- Columns: 53
-- Clean analysis records: 172,765 rows after removing `CANCELED` and `SUSPECTED_FRAUD` orders
-- Date range after cleaning: 2015-01-01 to 2018-01-31
-- Markets: Africa, Europe, LATAM, Pacific Asia, USCA
-- Customer segments: Consumer, Corporate, Home Office
-
-Dataset files:
-
-- `Data/DataCoSupplyChainDataset.csv`: main order, customer, product, logistics, sales, and profit dataset
-- `Data/DescriptionDataCoSupplyChain.csv`: field descriptions for the main dataset
-- `Data/tokenized_access_logs.csv`: tokenized access log file included with the original dataset package
-
-Important note: the `Data/` folder is excluded from the GitHub repository. Download the dataset from Kaggle and place the files in `Data/` locally before running the notebooks.
-
-## Tools & Libraries
-
-Core tools:
-
-- Python
-- Jupyter Notebook / Google Colab
-- pandas
-- numpy
-- matplotlib
-- seaborn
-- scipy
-- statsmodels
-- scikit-learn
-
-Analytical methods:
-
-- Exploratory data analysis
-- Time-series aggregation
-- Seasonal decomposition
-- Moving average forecasting
-- Linear regression
-- Polynomial regression
-- Newsvendor inventory optimization
-- Monte Carlo simulation
-- Linear programming
-- Non-linear optimization
-- Chi-Square statistical testing
-
-## Project Structure
-
-```text
-.
-|-- Data/
-|   |-- DataCoSupplyChainDataset.csv
-|   |-- DescriptionDataCoSupplyChain.csv
-|   `-- tokenized_access_logs.csv
-|-- Notebook/
-|   |-- logistics_late_delivery_analysis.ipynb
-|   |-- demand_forecasting_inventory.ipynb
-|   `-- profit_discount_optimization.ipynb
-|-- Outputs/
-|   |-- charts/
-|   |   |-- chart_index.md
-|   |   |-- chart_manifest.csv
-|   |   |-- demand_forecasting_inventory/
-|   |   |   `-- 13 extracted report charts
-|   |   |-- logistics_late_delivery_analysis/
-|   |   |   `-- 6 extracted report charts
-|   |   |-- profit_discount_optimization/
-|   |   |   `-- 10 extracted report charts
-|   |   |-- late_delivery_by_shipping_mode.png
-|   |   |-- monthly_demand_top_categories.png
-|   |   |-- total_profit_by_market.png
-|   |   `-- discount_vs_profit_margin.png
-|   `-- reports/
-|       |-- logistics_late_delivery_analysis.html
-|       |-- demand_forecasting_inventory.html
-|       `-- profit_discount_optimization.html
-|-- References/
-|   |-- Optimization_Toolkit_Review_Notebook.pdf
-|   |-- tong_hop_kien_thuc_operations_analytics.pdf
-|   |-- Tong_hop_Kien_thuc_Simulation_Excel.pdf
-|   `-- Tong_hop_Kien_thuc_Tuan4_Decision_Analytics.pdf
-`-- README.md
+```mermaid
+graph TD
+    A[Raw DataCo Dataset] --> B[Phase 1: Fraud & Segmentation]
+    B --> B1[Fraud Profiling]
+    B --> B2[Market Segmentation Scorecard]
+    B --> C[Cleaned Baseline Dataset]
+    
+    C --> D[Phase 2: Newsvendor & Risk Optimization]
+    D --> D1[Demand Distribution Fitting]
+    D --> D2[Newsvendor Q* Calculation]
+    D --> D3[Risk-Constrained Portfolio Optimization]
+    
+    C & D3 --> E[Phase 3: Network & Contract Optimization]
+    E --> E1[Transport LP Flow Allocation]
+    E --> E2[Two-Stage Flexible Capacity Contract]
+    E --> F[Executive Strategy Report]
 ```
 
-## References
+---
 
-The `References/` folder contains supporting learning materials and methodology notes used as background references for the analysis:
+## 📂 Repository Structure
 
-- `References/Optimization_Toolkit_Review_Notebook.pdf`
-- `References/tong_hop_kien_thuc_operations_analytics.pdf`
-- `References/Tong_hop_Kien_thuc_Simulation_Excel.pdf`
-- `References/Tong_hop_Kien_thuc_Tuan4_Decision_Analytics.pdf`
+```
+├── Data/
+│   ├── DescriptionDataCoSupplyChain.csv     # Metadata and column definitions
+│   └── (DataCoSupplyChainDataset.csv)       # Excluded from Git (download from Kaggle)
+│   └── (tokenized_access_logs.csv)          # Excluded from Git (download from Kaggle)
+├── Notebooks/
+│   ├── Phase1_DataQuality_Fraud_Segmentation.ipynb  # Setup, Fraud, and Market Segmentation
+│   ├── Phase2_Newsvendor_Risk_Optimization.ipynb     # Demand construction, Newsvendor, and Risk budgets
+│   └── Phase3_Network_Contract_Optimization.ipynb    # Transport LP and Two-Stage Flexible Contracting
+├── Output/
+│   ├── Phase1/
+│   │   ├── figures/                         # Phase 1 plots (heatmaps, Pareto charts)
+│   │   ├── fraud_profile_order_level.csv    # Fraud rates by transaction types
+│   │   ├── market_segment_scorecard.csv    # Market performance metrics
+│   │   └── operations_guide_phase1.html     # HTML Walkthrough of Phase 1
+│   ├── Phase2/
+│   │   ├── figures/                         # Phase 2 plots (demand fitting, frontier)
+│   │   ├── category_demand_stats.csv        # Summary demand parameters by category
+│   │   ├── demand_panel_category_month.csv  # Monthly demand panel
+│   │   ├── newsvendor_results.csv           # Optimal Q* and profit distribution per category
+│   │   ├── risk_frontier.csv                # Risk-reward trade-offs
+│   │   └── Phase2_Business_Technical_Review_Report.html
+│   ├── Phase3/
+│   │   ├── figures/                         # Phase 3 plots (flows, sensitivity)
+│   │   ├── transport_cost_matrix.csv        # Formulated cost matrix between markets and regions
+│   │   ├── optimal_transport_flows.csv      # Transport LP optimization results
+│   │   ├── contract_scenarios.csv           # Simulation results for flexible capacity
+│   │   ├── contract_policy.csv              # Optimal Q1, Q2 rules
+│   │   ├── strategy_comparison.csv          # Fixed vs Flexible vs Baseline comparison
+│   │   └── operations_guide_phase3.html
+│   └── executive_report.html                # Compiled C-level presentation report
+├── References/
+│   └── *.pdf                                # Operational literature and analytics notes
+└── .gitignore                               # Specifies excluded files (Data, temp, etc.)
+```
 
-## Data Cleaning & Preparation
+---
 
-The notebooks apply the following preparation steps:
+## 📊 Dataset & Setup
 
-- Load the main CSV with `ISO-8859-1` compatible encoding.
-- Remove orders with `Order Status` equal to `CANCELED` or `SUSPECTED_FRAUD`.
-- Parse order and shipping date columns into datetime fields.
-- Create time-based fields such as order month and day of week.
-- Create logistics features:
-  - `Shipping_Delay_Days`
-  - `Is_Late`
-- Create profitability features:
-  - `Profit_Margin`
-  - `Discount_Rate`
-- Aggregate demand by product category, product name, and month.
+### 1. Download Dataset
+The main supply chain dataset contains **180,519 transactions** with **53 features** (item-level granularity). Due to file sizes (~95MB each), the raw CSVs are ignored in this repository. 
+To run the notebooks, please download the files from Kaggle and place them in the `Data/` directory:
+👉 **[DataCo SMART SUPPLY CHAIN FOR BIG DATA ANALYSIS on Kaggle](https://www.kaggle.com/datasets/shashwatwork/dataco-smart-supply-chain-for-big-data-analysis)**
 
-## Exploratory Data Analysis
+Expected files in `Data/`:
+- `DataCoSupplyChainDataset.csv`
+- `tokenized_access_logs.csv`
+- `DescriptionDataCoSupplyChain.csv`
 
-### Logistics Late Delivery Analysis
+### 2. Data Quality & Warnings
+*   **Encoding**: The dataset contains special characters and must be loaded using Latin-1 encoding:
+    ```python
+    df = pd.read_csv('Data/DataCoSupplyChainDataset.csv', encoding='latin-1')
+    ```
+*   **Item-Level Grain**: Each row represents a single product item in an order. Summing order-level columns (e.g., `Order Profit Per Order` or `Benefit per order`) directly will result in severe double-counting. Always deduplicate by `Order Id` before evaluating order-level performance.
+*   **Suspected Fraud Filtering**: For Phase 1, `SUSPECTED_FRAUD` rows are preserved as the label. For Phase 2 (Newsvendor) and Phase 3 (Network), `SUSPECTED_FRAUD` and `CANCELED` orders are excluded to create an unbiased demand baseline.
 
-Notebook: `Notebook/logistics_late_delivery_analysis.ipynb`
+---
 
-This analysis measures delivery performance and identifies operational bottlenecks by shipping mode, market, order region, product category, and time period.
+## 🔍 Phase Walkthrough & Mathematical Modeling
 
-Main metrics:
+### 1. Phase 1: Fraud Order Analysis & Market Segmentation
+*   **Goal**: Profile transaction characteristics to isolate fraudulent patterns and segment the global market by risk-reward metrics.
+*   **Key Techniques**:
+    *   Crosstab lifting analysis across payment `Type`, customer `Market`, and `Customer Segment`.
+    *   Calculation of order-level profit margins and late delivery rates.
+*   **Results**: Identified payment channels with anomalous fraud rates (e.g., `TRANSFER` payment methods combined with specific markets). Categorized Market-Segment pairs into Risk Tiers (e.g., *Europe-Consumer* as a High-Value segment, and *Africa-Consumer* as a High-Risk segment).
 
-- Late Delivery Rate: 57.29%
-- Average actual shipping time: 3.50 days
-- Average delay among late orders: 1.62 days
+### 2. Phase 2: Newsvendor Model & Risk-Constrained Optimization
+*   **Goal**: Determine optimal monthly order quantities ($Q_k^*$) for each product category under stochastic demand, then balance the inventory portfolio subject to a global risk budget.
+*   **Mathematical Model**:
+    *   **Newsvendor Critical Ratio**:
+        $$CR_k = \frac{p_k - c_k}{p_k - s_k}$$
+        *Where:*
+        *   $p_k$: Weighted average product selling price
+        *   $c_k$: Unit procurement cost proxy (derived from historic profit margins)
+        *   $s_k$: Salvage value proxy (derived from average discount rates)
+    *   **Optimal Order Quantity**:
+        $$Q_k^* = F_{D_k}^{-1}(CR_k)$$
+        *Where $F_{D_k}^{-1}$ is the inverse CDF of the empirical demand distribution.*
+    *   **Risk-Constrained Portfolio Formulation**:
+        $$\max_{Q_k \ge 0} \mathbb{E}\left[\sum_{k} \text{Profit}_k(Q_k)\right]$$
+        *Subject to:*
+        $$\text{StdDev}\left(\sum_{k} \text{Profit}_k(Q_k)\right) \le \text{Risk Budget}$$
+        $$P(D_k \le Q_k) \ge 80\% \quad \forall k \quad (\text{Service Level SLA})$$
+        $$\sum_{k} c_k Q_k \le \text{Capital Budget}$$
 
-The notebook also compares financial performance between late and non-late orders and applies Chi-Square tests to validate whether shipping mode and order region are statistically associated with late delivery.
+### 3. Phase 3: Network Optimization & Two-Stage Capacity Contract
+*   **Goal**: Optimize shipment routing from markets (supply sources) to destination regions, then evaluate a two-stage flexible capacity contract to mitigate logistics delays.
+*   **Mathematical Model**:
+    *   **Transportation LP**:
+        $$\min_{x_{ij} \ge 0} \sum_{i} \sum_{j} \text{cost}_{ij} \cdot x_{ij}$$
+        *Subject to:*
+        $$\sum_{j} x_{ij} \le \text{supply}_i \quad \forall i \in \text{Markets}$$
+        $$\sum_{i} x_{ij} \ge \text{demand}_j \quad \forall j \in \text{Regions}$$
+        *Where cost matrix $\text{cost}_{ij}$ incorporates transit times, late penalties, and discount pressures.*
+    *   **Two-Stage Flexible Contract**:
+        *   *Stage 1 Decision*: Commit to a baseline capacity $Q_1$ upfront.
+        *   *Stage 2 Decision*: Observe market signal $s \in \{\text{Strong}, \text{Weak}\}$ and order top-up capacity $Q_{2,s}$ at a premium price.
+        *   *Objective*: Maximize expected profit minus contract commitment and execution costs.
 
-### Demand Forecasting & Inventory Optimization
+---
 
-Notebook: `Notebook/demand_forecasting_inventory.ipynb`
+## 📈 Key Project Insights
 
-This analysis identifies top-demand product categories and products, decomposes monthly demand into trend and seasonality, and applies forecasting methods for inventory planning.
+*   **Top Shipping Lanes**: 
+    1. `LATAM` $\rightarrow$ `Central America` (1,609.2 units, cost: 42.18)
+    2. `Europe` $\rightarrow$ `Western Europe` (1,457.9 units, cost: 42.92)
+    3. `LATAM` $\rightarrow$ `South America` (837.2 units, cost: 42.24)
+*   **Optimal Inventory Quantities (Top Categories)**:
+    *   **Fishing**: Mean Demand = 488, Critical Ratio = 0.1411, Optimal $Q^*$ = 484.
+    *   **Cleats**: Mean Demand = 2077, Critical Ratio = 0.1403, Optimal $Q^*$ = 2025.
+    *   **Camping & Hiking**: Mean Demand = 387, Critical Ratio = 0.1311, Optimal $Q^*$ = 371.
+*   **Capacity Strategy**: The flexible contract analysis provides quantitative recommendations on whether to secure fixed long-term shipping capacity or remain on spot markets, incorporating the *Expected Value of Flexibility (EVF)*.
 
-Methods used:
+---
 
-- Monthly demand aggregation
-- Seasonal decomposition
-- 3-month moving average forecast
-- Linear regression forecast
-- Newsvendor Model for optimal order quantity
-- Monte Carlo simulation with 10,000 runs to validate inventory decisions
+## 🛠️ Getting Started
 
-Top categories by ordered quantity:
+### 1. Prerequisites
+Ensure you have Python 3.8+ installed. 
 
-- Cleats: 70,611 units
-- Women's Apparel: 60,232 units
-- Indoor/Outdoor Games: 55,333 units
-- Cardio Equipment: 35,937 units
-- Shop By Sport: 31,329 units
-
-### Profit & Discount Optimization
-
-Notebook: `Notebook/profit_discount_optimization.ipynb`
-
-This analysis evaluates profitability by customer segment and market, then models the relationship between discount rate and profit margin.
-
-Methods used:
-
-- Segment-level profit analysis
-- Market-level profit analysis
-- Polynomial regression for discount impact
-- Linear programming for constrained discount optimization
-- Grid search and non-linear optimization for net profit maximization
-
-Profit by customer segment:
-
-- Consumer: $1.98M total profit, 12.13% average margin
-- Corporate: $1.16M total profit, 12.08% average margin
-- Home Office: $0.67M total profit, 11.95% average margin
-
-## Key Insights
-
-- Late delivery is the largest operational risk. More than half of cleaned orders were delivered late.
-- First Class shipping shows the highest late delivery rate in this dataset, reaching 100.0%.
-- Second Class shipping also performs poorly, with a 79.8% late delivery rate.
-- Standard Class has the lowest late delivery rate among the available shipping modes, at 39.8%.
-- Demand is concentrated in a small group of categories, especially Cleats, Women's Apparel, and Indoor/Outdoor Games.
-- Europe and LATAM generate the highest total profit among markets.
-- Consumer is the most profitable customer segment by total profit.
-- Average profit margin is similar across segments, which suggests that profit differences are mainly driven by order volume rather than margin alone.
-- Discount decisions should be optimized by segment and market instead of applying a single discount policy across the business.
-
-## Visualizations
-
-All charts from the exported analysis reports are stored in `Outputs/charts/`:
-
-- Full chart index: `Outputs/charts/chart_index.md`
-- Machine-readable manifest: `Outputs/charts/chart_manifest.csv`
-- Demand forecasting & inventory charts: `Outputs/charts/demand_forecasting_inventory/` with 13 charts
-- Logistics late delivery charts: `Outputs/charts/logistics_late_delivery_analysis/` with 6 charts
-- Profit & discount optimization charts: `Outputs/charts/profit_discount_optimization/` with 10 charts
-
-The README below highlights a smaller set of key visuals for quick project review.
-
-### Late Delivery Rate by Shipping Mode
-
-![Late Delivery Rate by Shipping Mode](Outputs/charts/late_delivery_by_shipping_mode.png)
-
-This chart shows that First Class and Second Class shipping carry the highest late delivery risk.
-
-### Monthly Demand Trend for Top Categories
-
-![Monthly Demand Trend for Top Product Categories](Outputs/charts/monthly_demand_top_categories.png)
-
-This chart highlights the demand concentration and monthly variation across the highest-volume product categories. The chart uses the stable top-category period through 2017-09 to avoid distortion from sparse category data at the end of the dataset.
-
-### Total Profit by Market
-
-![Total Profit by Market](Outputs/charts/total_profit_by_market.png)
-
-Europe and LATAM are the strongest markets by total profit, while Africa contributes the smallest total profit in this dataset.
-
-### Average Profit Margin by Discount Rate
-
-![Average Profit Margin by Discount Rate](Outputs/charts/discount_vs_profit_margin.png)
-
-This chart summarizes how average margin changes across discount bands and supports the need for controlled discount optimization.
-
-## Business Recommendations
-
-1. Prioritize logistics improvement for First Class and Second Class shipping.
-   - These shipping modes have the highest late delivery rates and should be reviewed for capacity, carrier reliability, SLA design, and fulfillment process gaps.
-
-2. Monitor late delivery by region and shipping mode together.
-   - Shipping mode alone is not enough. The Chi-Square tests indicate that both shipping mode and order region are statistically related to late delivery risk.
-
-3. Build inventory policies around the highest-demand categories.
-   - Cleats, Women's Apparel, and Indoor/Outdoor Games should receive dedicated forecasting, reorder point monitoring, and stockout tracking.
-
-4. Use seasonal demand adjustments.
-   - Inventory quantities should be increased during high-season months and reduced during low-season months based on seasonal indices.
-
-5. Apply the Newsvendor Model for replenishment decisions.
-   - The model helps balance underage cost from stockouts and overage cost from excess inventory.
-
-6. Treat discounting as an optimization problem, not only a sales tactic.
-   - Discounts should be evaluated by their effect on net profit, not only revenue or order volume.
-
-7. Focus commercial resources on high-profit markets and segments.
-   - Europe, LATAM, and the Consumer segment deserve priority for retention, marketing investment, and service quality.
-
-## How to Run This Project
-
-1. Clone this repository.
-
-2. Install the required Python libraries:
-
+### 2. Installation
+Clone this repository and install the required packages:
 ```bash
-pip install pandas numpy matplotlib seaborn scipy statsmodels scikit-learn jupyter
+git clone https://github.com/huytk16/DataCo-SMART-SUPPLY-CHAIN-FOR-BIG-DATA-ANALYSIS.git
+cd DataCo-SMART-SUPPLY-CHAIN-FOR-BIG-DATA-ANALYSIS
+pip install -r requirements.txt
 ```
 
-3. Open Jupyter Notebook:
+*(If `requirements.txt` is not present, install manually via:)*
+```bash
+pip install pandas numpy scipy pulp matplotlib seaborn jupyter
+```
 
+### 3. Running the Analysis
+Launch Jupyter Notebook or JupyterLab and open the notebooks in order:
 ```bash
 jupyter notebook
 ```
+Execute the files inside the `Notebooks/` directory sequentially:
+1. `Phase1_DataQuality_Fraud_Segmentation.ipynb`
+2. `Phase2_Newsvendor_Risk_Optimization.ipynb`
+3. `Phase3_Network_Contract_Optimization.ipynb`
 
-4. Run the notebooks in this order:
+All results, statistics, and figures will be exported directly into the `Output/` folder.
 
-- `Notebook/logistics_late_delivery_analysis.ipynb`
-- `Notebook/demand_forecasting_inventory.ipynb`
-- `Notebook/profit_discount_optimization.ipynb`
+---
 
-5. If running locally, update the data loading path inside each notebook to:
-
-```python
-data_path = "../Data/DataCoSupplyChainDataset.csv"
-```
-
-The notebooks were originally developed in Google Colab, so some cells still reference Google Drive paths.
-
-6. Open the exported HTML reports in:
-
-- `Outputs/reports/logistics_late_delivery_analysis.html`
-- `Outputs/reports/demand_forecasting_inventory.html`
-- `Outputs/reports/profit_discount_optimization.html`
-
-## Results / Final Conclusion
-
-The DataCo supply chain analysis shows that operational performance, inventory planning, and pricing strategy are tightly connected.
-
-The most urgent issue is logistics reliability. A 57.29% late delivery rate indicates that delivery performance is a major business risk, especially for premium shipping modes that customers likely expect to be faster and more reliable.
-
-From the demand and inventory perspective, sales volume is concentrated in a limited number of categories. This makes targeted forecasting and inventory optimization more valuable than a generic policy across all products.
-
-From the profitability perspective, Europe, LATAM, and the Consumer segment are the strongest profit contributors. Discounting should be controlled with segment-level optimization because margin behavior varies across discount bands and customer groups.
-
-Overall, the business should prioritize logistics SLA improvement, category-level inventory planning, and disciplined discount optimization to improve service quality and profitability.
+## 📄 License & Citations
+*   **Dataset Citation**: Constante, Fabian; Silva, Fernando; Pereira, António (2019), "DataCo SMART SUPPLY CHAIN FOR BIG DATA ANALYSIS", Mendeley Data, V5, doi: 10.17632/8gx2fvg2k6.5.
+*   **Analytical Framework**: Wharton School Operations Analytics course concepts applied to the DataCo Global dataset.

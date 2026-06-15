@@ -1,0 +1,24 @@
+Market,Order Region,x_ij,cost_ij,total_lane_cost,supply_binding
+LATAM,Central America,1609.2,42.18,67875.6,YES
+Europe,Western Europe,1457.9,42.92,62573.88,YES
+LATAM,South America,837.2,42.24,35365.15,YES
+Pacific Asia,Oceania,529.5,41.92,22197.21,YES
+Europe,Northern Europe,528.7,41.82,22109.22,YES
+Europe,Southern Europe,504.8,42.09,21245.21,YES
+Pacific Asia,Southeast Asia,488.2,42.62,20805.47,YES
+LATAM,Caribbean,470.3,41.52,19525.62,YES
+USCA,West of USA ,449.6,42.01,18887.47,YES
+Pacific Asia,South Asia,406.6,42.74,17376.7,YES
+USCA,East of USA,392.1,42.75,16762.62,YES
+Pacific Asia,Eastern Asia,372.5,42.05,15661.92,YES
+Pacific Asia,West Asia,342.0,42.63,14580.61,YES
+USCA,US Center ,337.1,42.47,14314.69,YES
+USCA,South of  USA ,227.5,42.86,9751.23,YES
+Europe,Eastern Europe,228.9,42.4,9706.16,YES
+Africa,West Africa,214.2,41.0,8781.76,YES
+Africa,North Africa,184.7,41.97,7751.97,YES
+Africa,East Africa,105.0,42.73,4487.8,YES
+Africa,Central Africa,96.6,44.17,4265.39,YES
+Africa,Southern Africa,64.5,41.83,2698.6,YES
+USCA,Canada,55.8,39.29,2190.68,YES
+Pacific Asia,Central Asia,32.2,42.14,1355.31,YES

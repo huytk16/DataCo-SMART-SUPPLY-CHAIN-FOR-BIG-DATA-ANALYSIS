@@ -1,0 +1,5 @@
+risk_budget,expected_profit,profit_std,cv,p_loss,q_Fishing,q_Cleats,q_Camping_and_Hiking,q_Cardio_Equipment,q_Women's_Apparel,q_Water_Sports,q_Indoor/Outdoor_Games,q_Men's_Footwear,q_Shop_By_Sport,q_Electronics,q_Girls'_Apparel,q_Accessories,q_Golf_Gloves,q_Golf_Shoes,q_Baseball_and_Softbal,q_Boxing_and_MMA,q_Golf_Balls,q_Trade-In,q_Hunting_and_Shooting,q_Hockey,q_Tennis_and_Racquet,q_Lacrosse,q_Fitness_Accessories,q_Golf_Apparel
+newsvendor_baseline,86268.6,45538.44,0.528,0.043,484,2025,371,998,1696,413,1515,606,883,290,105,154,68,24,33,21,121,47,22,39,25,19,16,19
+strict,84506.72,42467.41,0.503,0.042,426,1875,368,941,1656,407,1502,590,876,287,105,147,68,24,34,24,121,54,23,38,24,19,18,20
+base,85873.25,44069.06,0.513,0.043,463,1927,371,951,1668,409,1506,590,891,292,89,153,68,24,34,24,119,57,23,36,24,19,18,20
+relaxed,86023.2,44262.55,0.515,0.043,463,1926,371,986,1689,410,1508,596,878,288,105,152,68,24,34,24,113,54,23,36,24,19,18,20

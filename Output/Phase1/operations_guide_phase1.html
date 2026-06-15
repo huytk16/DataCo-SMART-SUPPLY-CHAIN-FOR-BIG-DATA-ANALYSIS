@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo Cáo Vận Hành & Phân Đoạn Thị Trường (Phase 1) - DataCo Global</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2C3E50;
+            --primary-light: #34495E;
+            --accent: #E67E22;
+            --accent-red: #C0392B;
+            --accent-green: #27AE60;
+            --accent-blue: #2980B9;
+            --bg-body: #F8F9FA;
+            --bg-card: #FFFFFF;
+            --text-main: #2C3E50;
+            --text-muted: #7F8C8D;
+            --border-color: #E2E8F0;
+            --sidebar-width: 280px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        aside {
+            width: var(--sidebar-width);
+            background-color: var(--primary);
+            color: #FFFFFF;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 100;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+        }
+
+        .logo-container {
+            margin-bottom: 3rem;
+        }
+
+        .logo-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-sub {
+            font-size: 0.75rem;
+            color: #BDC3C7;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: 0.25rem;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            flex-grow: 1;
+        }
+
+        .nav-links a {
+            color: #ECF0F1;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            display: block;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background-color: var(--primary-light);
+            color: #FFFFFF;
+            padding-left: 1.25rem;
+            border-left: 4px solid var(--accent);
+        }
+
+        .sidebar-footer {
+            font-size: 0.75rem;
+            color: #BDC3C7;
+            border-top: 1px solid var(--primary-light);
+            padding-top: 1rem;
+        }
+
+        /* Main Content Layout */
+        main {
+            margin-left: var(--sidebar-width);
+            flex-grow: 1;
+            padding: 3rem 4rem;
+            max-width: 1200px;
+        }
+
+        header {
+            margin-bottom: 3rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 1.5rem;
+        }
+
+        .badge {
+            background-color: #EBF8FF;
+            color: #2B6CB0;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 0.75rem;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .meta-desc {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        /* KPI Dashboard Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .kpi-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--primary);
+        }
+
+        .kpi-card.accent-red::before { background-color: var(--accent-red); }
+        .kpi-card.accent-green::before { background-color: var(--accent-green); }
+        .kpi-card.accent-orange::before { background-color: var(--accent); }
+
+        .kpi-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-value {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+
+        .kpi-sub {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        /* Section Styling */
+        section {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+            border: 1px solid var(--border-color);
+            scroll-margin-top: 2rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            border-left: 4px solid var(--accent);
+            padding-left: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--primary-light);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            font-size: 0.95rem;
+            color: #4A5568;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-bottom: 1.25rem;
+            padding-left: 1.5rem;
+            color: #4A5568;
+            font-size: 0.95rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tables styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background-color: #F8FAFC;
+            color: var(--primary);
+            font-weight: 700;
+            text-align: left;
+            padding: 0.75rem 1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            color: #4A5568;
+        }
+
+        tr:hover td {
+            background-color: #F8FAFC;
+        }
+
+        /* Status Tiers */
+        .tier-badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .tier-high-value { background-color: #C6F6D5; color: #22543D; }
+        .tier-moderate-value { background-color: #EBF8FF; color: #2B6CB0; }
+        .tier-discount-sensitive { background-color: #FEFCBF; color: #744210; }
+        .tier-high-risk { background-color: #FED7D7; color: #742A2A; }
+        .tier-monitor { background-color: #EDF2F7; color: #4A5568; }
+
+        /* Alert / Highlight Box */
+        .alert-box {
+            background-color: #FFF5F5;
+            border-left: 4px solid var(--accent-red);
+            padding: 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+            color: #742A2A;
+            font-size: 0.95rem;
+        }
+
+        .alert-title {
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .success-box {
+            background-color: #F0FFF4;
+            border-left: 4px solid var(--accent-green);
+            padding: 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+            color: #22543D;
+            font-size: 0.95rem;
+        }
+
+        .success-title {
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Grid for two columns */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        /* Flow diagram placeholder */
+        .flow-diag {
+            background-color: #F8FAFC;
+            border: 1px dashed var(--text-muted);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: var(--primary-light);
+            margin: 1.5rem 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <aside>
+        <div class="logo-container">
+            <div class="logo-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                DataCo Global
+            </div>
+            <div class="logo-sub">Operations Analytics</div>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#tong-quan" class="active">1. Tổng Quan & Quy Trình</a></li>
+            <li><a href="#bieu-do">2. Hướng Dẫn Đọc Biểu Đồ</a></li>
+            <li><a href="#insight">3. Insight & Khuyến Nghị</a></li>
+            <li><a href="#ban-giao">4. Bàn Giao Dữ Liệu</a></li>
+        </ul>
+
+        <div class="sidebar-footer">
+            Báo cáo Vận hành Phase 1<br>
+            © 2026 DataCo Analytics
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+        <header>
+            <span class="badge">Phase 1 Report</span>
+            <h1>Tài Liệu Hướng Dẫn Vận Hành & Phân Đoạn Thị Trường</h1>
+            <div class="meta-desc">Báo cáo phân tích chất lượng dữ liệu, kiểm soát gian lận và đánh giá rủi ro thị trường cho cấp quản lý.</div>
+        </header>
+
+        <!-- KPI Grid Dashboard -->
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-label">Tổng Doanh Thu Baseline</div>
+                <div class="kpi-value">$35.21M</div>
+                <div class="kpi-sub">Sau khi lọc sạch Canceled/Fraud</div>
+            </div>
+            <div class="kpi-card accent-orange">
+                <div class="kpi-label">Số Đơn Hàng Sạch</div>
+                <div class="kpi-value">62,897</div>
+                <div class="kpi-sub">Tập trung 80% tại 3 thị trường</div>
+            </div>
+            <div class="kpi-card accent-red">
+                <div class="kpi-label">Tỷ Lệ Lừa Đảo Hệ Thống</div>
+                <div class="kpi-value">2.26%</div>
+                <div class="kpi-sub">100% nằm ở phương thức TRANSFER</div>
+            </div>
+            <div class="kpi-card accent-green">
+                <div class="kpi-label">Tỷ Lệ Giao Trễ TB</div>
+                <div class="kpi-value">57.1%</div>
+                <div class="kpi-sub">Điểm nghẽn hệ thống toàn cầu</div>
+            </div>
+        </div>
+
+        <!-- Section 1: Tổng quan & Quy trình -->
+        <section id="tong-quan">
+            <h2>1. Tổng Quan Dự Án & Quy Trình Xử Lý</h2>
+            <p>Mục tiêu chiến lược của <strong>Phase 1</strong> là thiết lập một bộ cơ sở dữ liệu nhu cầu thực tế hoàn hảo (clean demand baseline) để phục vụ cho các thuật toán tối ưu hóa hàng tồn kho (Phase 2 - Newsvendor) và quy hoạch luồng logistics (Phase 3 - Network LP). Song song đó, chúng tôi thực hiện cấu trúc hóa hồ sơ rủi ro của doanh nghiệp thông qua việc bóc tách hành vi gian lận đơn hàng và phân bậc rủi ro thị trường.</p>
+            
+            <p>Quy trình làm việc được chia làm 3 bước chuẩn hóa:</p>
+            <div class="flow-diag">
+                [P0: Data Quality Check] ────────> [P1: Fraud Order Analysis] ────────> [P2: Market Segmentation]<br>
+                (Lọc PII, chuẩn hóa Grain)          (Gom nhóm, lọc TRANSFER)            (Lập Scorecard, chia Risk Tiers)
+            </div>
+
+            <h3>Bước P0: Kiểm tra Chất lượng Dữ liệu</h3>
+            <ul>
+                <li><strong>Mã hóa tệp dữ liệu:</strong> Sử dụng mã hóa <code>latin-1</code> khi đọc dữ liệu thô để tránh lỗi hiển thị các ký tự chữ có dấu của vùng Nam Mỹ và Châu Âu.</li>
+                <li><strong>Hạt dữ liệu (Grain):</strong> Xác nhận dữ liệu thô ở mức Item-level (dòng sản phẩm chi tiết). Một đơn hàng có thể có nhiều dòng sản phẩm (trung bình 2.75 dòng/đơn).</li>
+                <li><strong>Bảo mật thông tin (PII):</strong> Loại bỏ các cột thông tin cá nhân của khách hàng như Email, Password, Họ tên, Ảnh sản phẩm để tuân thủ quy định bảo mật thông tin và tối ưu hóa hiệu năng lưu trữ.</li>
+            </ul>
+
+            <h3>Bước P1: Phân tích Đơn hàng Lừa đảo</h3>
+            <p>Phân tích lừa đảo được tính toán tại cấp độ <strong>Đơn hàng (Order-level)</strong> thay vì dòng sản phẩm để tránh sai số nhân đôi lợi nhuận và doanh thu của cùng một sự kiện thanh toán. Đơn hàng lừa đảo được định nghĩa dựa trên nhãn trạng thái <code>SUSPECTED_FRAUD</code>.</p>
+
+            <h3>Bước P2: Phân đoạn Thị trường</h3>
+            <p>Tạo lập tập dữ liệu baseline sạch <code>clean_baseline_df.pkl</code> bằng cách loại bỏ hoàn toàn các đơn hàng bị HỦY và LỪA ĐẢO. Nhu cầu thực tế này sẽ được tổng hợp theo từng tổ hợp <strong>Thị trường × Phân khúc khách hàng</strong> nhằm đánh giá mức độ đóng góp tài chính và hiệu suất giao hàng.</p>
+        </section>
+
+        <!-- Section 2: Hướng dẫn đọc biểu đồ -->
+        <section id="bieu-do">
+            <h2>2. Chi Tiết Các Biểu Đồ Trực Quan Hóa (Chuẩn Doanh Nghiệp)</h2>
+            <p>Các biểu đồ đã được nâng cấp lên chuẩn chuyên nghiệp với màu sắc tinh tế, lược bỏ các thành phần rườm rà (viền khung không cần thiết) và tối ưu hóa hệ thống nhãn số liệu trực quan để tối giản thời gian đọc hiểu của nhà quản lý.</p>
+
+            <h3>2.1. Phân Phối Biến Phân Loại (Cell 12)</h3>
+            <p>Sử dụng biểu đồ cột ngang đơn sắc xám navy để người đọc dễ dàng so sánh quy mô giữa các nhóm trạng thái đơn hàng, phương thức thanh toán và thị trường. Việc gắn nhãn trực tiếp giá trị tuyệt đối và phần trăm trên đầu cột giúp loại bỏ sự cần thiết của trục hoành và đường lưới dọc dày đặc.</p>
+
+            <h3>2.2. Biểu Đồ Tỷ Lệ Lừa Đảo theo Loại Thanh Toán & Thị Trường (Cell 29)</h3>
+            <p>Biểu đồ cột đứng sử dụng <strong>màu sắc có chủ đích (Visual Cue)</strong>. Cột đại diện cho phương thức thanh toán <code>TRANSFER</code> được tô màu đỏ nổi bật biểu thị mức cảnh báo cao (8.23% lừa đảo), trong khi các phương thức thanh toán khác được tô màu xám nhạt (0.00% lừa đảo) thể hiện vùng an toàn. Biểu đồ thị trường sử dụng màu xanh navy thống nhất thể hiện tỷ lệ lừa đảo phân bổ tương đối đồng đều (2.10% - 2.44%), không có khu vực địa lý nào là ngoại lệ.</p>
+
+            <h3>2.3. Bản Đồ Nhiệt (Heatmap) Thị Trường × Phương Thức Thanh Toán (Cell 31)</h3>
+            <p>Sử dụng dải màu cam ấm đơn sắc để làm nổi bật sự tập trung rủi ro. Các đường kẻ trắng mảnh chia tách các ô giúp phân biệt rõ từng khu vực giao thoa. Chỉ có duy nhất cột dọc <code>TRANSFER</code> là xuất hiện các mảng màu đậm thể hiện vùng nguy hiểm cần thắt chặt kiểm soát.</p>
+
+            <h3>2.4. Bản Đồ Nhiệt Kép: Lợi Nhuận vs Giao Hàng Trễ (Cell 42)</h3>
+            <div class="grid-2">
+                <div>
+                    <strong>Bản đồ Biên Lợi Nhuận (Xanh lá):</strong>
+                    <p>Màu sắc chuyển dần từ xanh nhạt đến xanh lục đậm thể hiện biên lợi nhuận tăng. Ô xanh lục đậm nhất đại diện cho nhóm <code>Pacific Asia × Consumer</code> (4.7%), đánh dấu đây là động cơ sinh lời tốt nhất của doanh nghiệp.</p>
+                </div>
+                <div>
+                    <strong>Bản đồ Giao Hàng Trễ (Cam cháy):</strong>
+                    <p>Tông màu cam đậm bao phủ đồng đều toàn bộ tất cả các ô trong bản đồ. Trực quan này ngay lập tức gửi đi tín hiệu cảnh báo khẩn cấp: Giao hàng trễ đang là lỗi mang tính hệ thống toàn cầu của DataCo (>55%).</p>
+                </div>
+            </div>
+
+            <h3>2.5. Biểu Đồ Pareto Doanh Thu Thị Trường (Cell 43)</h3>
+            <p>Sử dụng trục tung kép: Trục bên trái là doanh thu dạng cột màu xám navy, trục bên phải là đường tích lũy màu cam thể hiện tỷ lệ %. Điểm giao cắt của đường tích lũy với đường nét đứt 80% chỉ ra rõ ràng rằng: Chỉ cần tập trung tối ưu hóa và đảm bảo nguồn cung cho 3 thị trường <strong>Europe, LATAM và Pacific Asia</strong> là doanh nghiệp đã nắm giữ 80% doanh thu toàn cầu.</p>
+        </section>
+
+        <!-- Section 3: Insight và Khuyến nghị -->
+        <section id="insight">
+            <h2>3. Câu Chuyện Đằng Sau Các Con Số & Khuyến Nghị Hành Động</h2>
+            
+            <div class="alert-box">
+                <div class="alert-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                    PHÁT HIỆN CHÍ MẠNG: LỖ HỔNG THANH TOÁN CHUYỂN KHOẢN (TRANSFER)
+                </div>
+                Dữ liệu chứng minh 100% đơn hàng lừa đảo đều sử dụng hình thức thanh toán TRANSFER. Tỷ lệ lừa đảo riêng của hình thức này là 8.23%, trong khi tỷ lệ của DEBIT, CASH và PAYMENT là 0.00%. Đây là lỗ hổng kiểm soát vận hành lớn nhất hiện tại.
+            </div>
+
+            <h3>Bảng Thẻ Điểm Phân Đoạn Thị Trường (Trích xuất các phân khúc chính)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Thị trường</th>
+                        <th>Phân khúc khách hàng</th>
+                        <th>Doanh thu</th>
+                        <th>Biên lợi nhuận</th>
+                        <th>Tỷ lệ giao trễ</th>
+                        <th>Xếp hạng Rủi ro (Tier)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pacific Asia</td>
+                        <td>Consumer</td>
+                        <td>$4,101,618</td>
+                        <td>4.7%</td>
+                        <td>56.9%</td>
+                        <td><span class="tier-badge tier-high-value">High Value</span></td>
+                    </tr>
+                    <tr>
+                        <td>Europe</td>
+                        <td>Consumer</td>
+                        <td>$5,420,101</td>
+                        <td>4.3%</td>
+                        <td>58.2%</td>
+                        <td><span class="tier-badge tier-discount-sensitive">Discount Sensitive</span></td>
+                    </tr>
+                    <tr>
+                        <td>LATAM</td>
+                        <td>Consumer</td>
+                        <td>$5,060,184</td>
+                        <td>3.1%</td>
+                        <td>57.1%</td>
+                        <td><span class="tier-badge tier-monitor">Monitor</span></td>
+                    </tr>
+                    <tr>
+                        <td>Europe</td>
+                        <td>Home Office</td>
+                        <td>$1,814,811</td>
+                        <td>3.4%</td>
+                        <td>58.3%</td>
+                        <td><span class="tier-badge tier-high-risk">High Risk</span></td>
+                    </tr>
+                    <tr>
+                        <td>USCA</td>
+                        <td>Corporate</td>
+                        <td>$1,439,145</td>
+                        <td>2.7%</td>
+                        <td>58.0%</td>
+                        <td><span class="tier-badge tier-high-risk">High Risk</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Khuyến Nghị Vận Hành Từ Chuyên Gia:</h3>
+            <ol>
+                <li><strong>Áp dụng Quy tắc Chặn Lừa đảo Tự động (Quy tắc TRANSFER):</strong> Yêu cầu bộ phận IT thiết lập bộ lọc tự động trên cổng thanh toán. Tất cả các giao dịch lựa chọn hình thức <code>TRANSFER</code> có giá trị trên $500 phải bị tạm khóa và chuyển sang trạng thái chờ đối soát thủ công (xác nhận sao kê ngân hàng). Ngược lại, giải phóng tài nguyên phê duyệt tự động ngay lập tức cho các giao dịch sử dụng các thẻ <code>DEBIT</code>, <code>CASH</code>.</li>
+                <li><strong>Đầu tư vào Động lực Tăng trưởng Pacific Asia × Consumer:</strong> Do đây là nhóm đem lại biên lợi nhuận cao nhất (4.7%) và tỷ lệ giao trễ thấp hơn mức trung bình, phòng kinh doanh nên tập trung ngân sách marketing và ưu tiên lượng hàng tồn kho dự phòng tại khu vực này để tối đa hóa doanh thu sạch.</li>
+                <li><strong>Cải tổ Đối tác Vận chuyển tại Europe & USCA:</strong> Nhóm phân khúc <code>Europe × Home Office</code> và <code>USCA × Corporate</code> bị xếp hạng <em>High Risk</em> do tạo biên lợi nhuận cực thấp (chỉ từ 2.7% - 3.4%) nhưng có tỷ lệ giao trễ vô cùng tệ hại (>58%). Cần thiết lập các thỏa thuận mức dịch vụ (SLA) chặt chẽ hơn hoặc đổi đối tác chặng cuối để cắt giảm chi phí phạt giao trễ.</li>
+                <li><strong>Sử dụng Tỷ lệ Doanh thu Thị trường làm Trọng số Phân bổ (Phase 3):</strong> Sử dụng phân phối doanh thu thực tế thu được từ phân tích Pareto (Europe: 29.5%, LATAM: 27.9%, Pacific Asia: 22.6%, USCA: 13.7%, Africa: 6.3%) làm xác suất tiên nghiệm (prior probability) khi thiết lập kịch bản nhu cầu Strong/Weak cho hợp đồng vận chuyển linh hoạt ở Phase 3.</li>
+            </ol>
+        </section>
+
+        <!-- Section 4: Bàn giao dữ liệu -->
+        <section id="ban-giao">
+            <h2>4. Bàn Giao Dữ Liệu Nền Tảng (Output Contract)</h2>
+            <p>Chúng tôi đã bàn giao và lưu trữ thành công các tệp dữ liệu sạch để làm đầu vào trực tiếp cho các mô hình tối ưu hóa tiếp theo trong chuỗi phân tích:</p>
+            
+            <div class="success-box">
+                <div class="success-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    KẾT QUẢ XUẤT TỆP THÀNH CÔNG (OUTPUT CONTRACT)
+                </div>
+                <ul>
+                    <li><strong><code>clean_baseline_df.pkl</code></strong> (172,765 dòng): Tệp dữ liệu item-level đã được làm sạch, loại trừ 100% đơn hàng lừa đảo và đơn hàng hủy. Dùng để dự báo nhu cầu và phân bổ kho Newsvendor (Phase 2).</li>
+                    <li><strong><code>fraud_profile_order_level.csv</code></strong>: Danh sách tỷ lệ lừa đảo theo tổ hợp, dùng để tính toán chi phí rủi ro lừa đảo (fraud penalty) cho các mô hình chặng sau.</li>
+                    <li><strong><code>market_segment_scorecard.csv</code></strong>: Bảng scorecard đầy đủ của 15 tổ hợp phục vụ thiết kế hợp đồng linh hoạt chặng sau.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
